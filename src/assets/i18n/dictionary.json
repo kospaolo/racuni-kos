@@ -1,0 +1,19 @@
+{
+    "home": {
+      "en": "Home",
+      "hr": "Početna"
+    },
+    "services": {
+      "en": "Services",
+      "hr": "Usluge"
+    },
+    "invoices": {
+      "en": "Invoices",
+      "hr": "Računi"
+    },
+    "contact": {
+      "en": "Contact",
+      "hr": "Kontakt"
+    }
+}
+  
