@@ -1,19 +1,23 @@
 {
     "home": {
-      "en": "Home",
-      "hr": "Početna"
+      "hr": "Početna",
+      "en": "Home"
     },
     "services": {
-      "en": "Services",
-      "hr": "Usluge"
+      "hr": "Usluge",
+      "en": "Services"
+    },
+    "offers": {
+      "hr": "Ponude",
+      "en": "Offers"
     },
     "invoices": {
-      "en": "Invoices",
-      "hr": "Računi"
+      "hr": "Računi",
+      "en": "Invoices"
     },
-    "contact": {
-      "en": "Contact",
-      "hr": "Kontakt"
+    "users": {
+      "hr": "Korisnici",
+      "en": "Users"
     }
 }
   
