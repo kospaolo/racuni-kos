@@ -4,7 +4,7 @@
       <a
         class="nav-link text-white"
         [routerLink]="['/']"
-        routerLinkActive="active"
+        [routerLinkActive]="['active']"
         >{{ "home" | translate }}</a
       >
     </li>
@@ -12,7 +12,7 @@
       <a
         class="nav-link text-white"
         [routerLink]="['/services']"
-        routerLinkActive="active"
+        [routerLinkActive]="['active']"
         >{{ "services" | translate }}</a
       >
     </li>
@@ -20,7 +20,7 @@
       <a
         class="nav-link text-white"
         [routerLink]="['/offers']"
-        routerLinkActive="active"
+        [routerLinkActive]="['active']"
         >{{ "offers" | translate }}</a
       >
     </li>
@@ -28,16 +28,16 @@
       <a
         class="nav-link text-white"
         [routerLink]="['/invoices']"
-        routerLinkActive="active"
+        [routerLinkActive]="['active']"
         >{{ "invoices" | translate }}</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link text-white"
-        [routerLink]="['/users']"
-        routerLinkActive="active"
-        >{{ "users" | translate }}</a
+        [routerLink]="['/customers']"
+        [routerLinkActive]="['active']"
+        >{{ "customers" | translate }}</a
       >
     </li>
   </ul>

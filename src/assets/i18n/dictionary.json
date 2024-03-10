@@ -1,23 +1,50 @@
 {
-    "home": {
-      "hr": "Početna",
-      "en": "Home"
-    },
-    "services": {
-      "hr": "Usluge",
-      "en": "Services"
-    },
-    "offers": {
-      "hr": "Ponude",
-      "en": "Offers"
-    },
-    "invoices": {
-      "hr": "Računi",
-      "en": "Invoices"
-    },
-    "users": {
-      "hr": "Korisnici",
-      "en": "Users"
-    }
+  "home": {
+    "hr": "Početna",
+    "en": "Home"
+  },
+  "services": {
+    "hr": "Usluge",
+    "en": "Services"
+  },
+  "offers": {
+    "hr": "Ponude",
+    "en": "Offers"
+  },
+  "invoices": {
+    "hr": "Računi",
+    "en": "Invoices"
+  },
+  "customers": {
+    "hr": "Kupci",
+    "en": "Customers"
+  },
+  "page_not_found": {
+    "hr": "Stranica nije pronađena!",
+    "en": "We couldn't find that page!"
+  },
+  "name": {
+    "hr": "Naziv",
+    "en": "Name"
+  },
+  "description": {
+    "hr": "Opis",
+    "en": "Description"
+  },
+  "price": {
+    "hr": "Cijena",
+    "en": "Price"
+  },
+  "action": {
+    "hr": "Akcija",
+    "en": "Action"
+  },
+  "add": {
+    "hr": "Dodaj",
+    "en": "Add"
+  },
+  "add_service": {
+    "hr": "Dodaj uslugu",
+    "en": "Add service"
+  }
 }
-  
