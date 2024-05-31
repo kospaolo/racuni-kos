@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedService } from '../shared.service';
-import { MatDialogModule } from '@angular/material/dialog';
 import { AddServiceComponent } from './add-service/add-service/add-service.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-offer-services',
@@ -16,7 +15,8 @@ export class OfferServicesComponent {
     private sharedService: SharedService,
     public modal: NgbActiveModal,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private apiService: ApiService
   ) {}
 
   columns: string[] = ['name', 'description', 'price', 'action'];
@@ -27,8 +27,10 @@ export class OfferServicesComponent {
   }
 
   getServices() {
-    this.sharedService.getServices().subscribe((res) => {
-      this.services = res;
+    this.apiService.getServices().subscribe(services => {
+      this.services = services;
+    }, error => {
+      console.error('Error fetching data', error);
     });
   }
 
@@ -48,9 +50,10 @@ export class OfferServicesComponent {
   }
 
   deleteService(service_id: string) {
-    this.sharedService.deleteService(service_id).then(
+    this.apiService.deleteService(service_id).subscribe(
       (response) => {
         this.toastr.success('Service deleted!');
+        this.services = this.services.filter((item: { id: string; }) => item.id !== service_id);
       },
       (error) => {
         this.toastr.error('Service not deleted!');

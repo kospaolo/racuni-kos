@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SharedService } from 'src/app/shared.service';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-add-service',
@@ -19,18 +20,14 @@ export class AddServiceComponent {
 
   constructor(
     public modal: NgbActiveModal,
-    private sharedService: SharedService,
-    private toastr: ToastrService
+    private apiService: ApiService,
   ) {}
 
   addService() {
-    this.sharedService.addService(this.newService).then(
-      (response) => {
-        this.modal.close('added');
-      },
-      (error) => {
-        console.error('Error adding service:', error);
-      }
-    );
+    this.apiService.addService(this.newService).subscribe(res => {
+      this.modal.close('added');
+    }, error => {
+      console.error('Error adding service', error);
+    });
   }
 }
