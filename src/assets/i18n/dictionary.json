@@ -46,5 +46,29 @@
   "add_service": {
     "hr": "Dodaj uslugu",
     "en": "Add service"
+  },
+  "add_offer": {
+    "hr": "Dodaj ponudu",
+    "en": "Add offer"
+  },
+  "customer": {
+    "hr": "Kupac",
+    "en": "Customer"
+  },
+  "created": {
+    "hr": "Kreirano",
+    "en": "Created"
+  },
+  "service": {
+    "hr": "Usluga",
+    "en": "Service"
+  },
+  "customers_firstname": {
+    "hr": "Ime kupca",
+    "en": "Customers first name"
+  },
+  "customers_lastname": {
+    "hr": "Prezime kupca",
+    "en": "Customers last name"
   }
 }

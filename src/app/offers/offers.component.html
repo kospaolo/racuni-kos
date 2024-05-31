@@ -1,0 +1,19 @@
+<div class="container mt-2">
+    <button class="btn btn-primary mt-4 mb-4" (click)="openAddOfferModal()">{{ "add_offer" | translate }}</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{ "customer" | translate }}</th>
+          <th>{{ "service" | translate }}</th>
+          <th>{{ "created" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of offers">
+          <td>{{ getCustomerName(offer.customerId) }}</td>
+          <td>{{ getServiceNames(offer.serviceIds) }}</td>
+          <td>{{ offer.created | date: 'dd.MM.yyyy. HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  

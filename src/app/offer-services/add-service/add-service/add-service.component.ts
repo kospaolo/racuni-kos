@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SharedService } from 'src/app/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
+import { Service } from 'src/app/models/service.model';
 
 @Component({
   selector: 'app-add-service',
@@ -12,10 +13,11 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AddServiceComponent {
 
-  newService = {
+  newService: Service = {
     name: '',
     description: '',
-    price: '',
+    price: 0,
+    id: undefined
   };
 
   constructor(

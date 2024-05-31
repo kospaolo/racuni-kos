@@ -22,6 +22,10 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { ApiService } from './services/api.service';
+import { AddOfferComponent } from './offers/add-offer/add-offer.component';
+import { OffersComponent } from './offers/offers.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,7 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     OfferServicesComponent,
     PageNotFoundComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    AddOfferComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +60,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     ToastrModule.forRoot(),
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule 
   ],
-  providers: [TranslationService, provideAnimationsAsync(), SharedService, ToastrService, NgbActiveModal],
+  providers: [TranslationService, provideAnimationsAsync(), SharedService, ToastrService, NgbActiveModal, ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

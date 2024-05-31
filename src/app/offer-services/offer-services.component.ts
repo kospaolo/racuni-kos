@@ -4,6 +4,7 @@ import { AddServiceComponent } from './add-service/add-service/add-service.compo
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
+import { Service } from '../models/service.model';
 
 @Component({
   selector: 'app-offer-services',
@@ -20,7 +21,7 @@ export class OfferServicesComponent {
   ) {}
 
   columns: string[] = ['name', 'description', 'price', 'action'];
-  services: any = [];
+  services: Service[] = [];
 
   ngOnInit() {
     this.getServices();
@@ -53,7 +54,7 @@ export class OfferServicesComponent {
     this.apiService.deleteService(service_id).subscribe(
       (response) => {
         this.toastr.success('Service deleted!');
-        this.services = this.services.filter((item: { id: string; }) => item.id !== service_id);
+        this.services = this.services.filter((item) => item.id !== service_id);
       },
       (error) => {
         this.toastr.error('Service not deleted!');
