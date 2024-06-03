@@ -17,7 +17,7 @@ export class AddServiceComponent {
     name: '',
     description: '',
     price: 0,
-    id: undefined
+    code: 1
   };
 
   constructor(

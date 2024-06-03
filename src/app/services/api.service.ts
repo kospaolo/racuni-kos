@@ -40,4 +40,8 @@ export class ApiService {
   addCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(`${this.apiUrl}/add-customer`, customer);
   }
+
+  deleteOffer(offerId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete-offer/${offerId}`);
+  }
 }

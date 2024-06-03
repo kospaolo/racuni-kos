@@ -1,4 +1,4 @@
-export interface Offer {
+export interface Invoice {
     id?: any;
     customerId: any;
     serviceIds: string[];

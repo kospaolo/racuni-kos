@@ -40,7 +40,8 @@ export class AddOfferComponent implements OnInit {
         const newOffer = {
           customerId: customer.id,
           serviceIds: this.selectedServiceIds,
-          created: new Date()
+          created: new Date(),
+          number: "1"
         };
         this.apiService.addOffer(newOffer).subscribe(
           offer => {

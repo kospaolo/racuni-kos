@@ -2,5 +2,6 @@ export interface Service {
     id?: any;
     name: string;
     description: string;
-    price?: number;
+    price: number;
+    code: number;
   }  

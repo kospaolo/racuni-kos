@@ -3,5 +3,8 @@ export interface Customer {
     firstName: string;
     lastName: string;
     email?: string;
-    mobilephone?: string
+    mobilephone?: string;
+    address: string,
+    city: string,
+    zip: number
   }

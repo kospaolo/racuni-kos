@@ -6,6 +6,7 @@
           <th>{{ "customer" | translate }}</th>
           <th>{{ "service" | translate }}</th>
           <th>{{ "created" | translate }}</th>
+          <th>{{ "action" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -13,6 +14,23 @@
           <td>{{ getCustomerName(offer.customerId) }}</td>
           <td>{{ getServiceNames(offer.serviceIds) }}</td>
           <td>{{ offer.created | date: 'dd.MM.yyyy. HH:mm' }}</td>
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteOffer(offer.id)"
+              data-toggle="tooltip"
+              title="Obriši"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+            <button
+              class="btn btn-success btn-sm ms-2"
+              (click)="downloadOfferPdf(offer.id)"
+              data-toggle="tooltip"
+              title="Preuzmi ponudu"
+            >
+              <i class="fa fa-download"></i>
+          </button>
         </tr>
       </tbody>
     </table>

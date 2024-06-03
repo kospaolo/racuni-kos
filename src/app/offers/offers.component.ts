@@ -6,6 +6,7 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
 import { Service } from '../models/service.model';
 import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
+import { PdfService } from '../services/pdf.service';
 
 @Component({
   selector: 'app-offers',
@@ -21,7 +22,8 @@ export class OffersComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private pdfService: PdfService
   ) {}
 
   ngOnInit() {
@@ -77,5 +79,33 @@ export class OffersComponent implements OnInit {
       },
       (reason) => {}
     );
+  }
+
+  deleteOffer(offerId: string) {
+    this.apiService.deleteOffer(offerId).subscribe(() => {
+      this.toastr.success('Offer deleted!');
+      this.getOffers();
+    }, error => {
+      console.error('Error deleting offer', error);
+      this.toastr.error('Failed to delete offer');
+    });
+  }
+
+  downloadOfferPdf(offerId: string) {
+    const offer = this.offers.find(o => o.id === offerId);
+
+    if (!offer) {
+      this.toastr.error('Offer not found');
+      return;
+    }
+
+    const customer = this.customers.find(c => c.id === offer.customerId);
+    if (!customer) {
+      this.toastr.error('Customer not found');
+      return;
+    }
+
+    this.pdfService.generatePdf(customer, this.services, offer);
+    this.toastr.success('Offer created!');
   }
 }

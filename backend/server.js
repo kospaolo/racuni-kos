@@ -73,6 +73,17 @@ app.post('/api/add-offer', async (req, res) => {
   }
 });
 
+app.delete('/api/delete-offer/:id', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const id = req.params.id;
+    await db.collection('offers').doc(id).delete();
+    res.json({ message: 'Offer deleted' });
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
 app.get('/api/get-customers', async (req, res) => {
   try {
     const db = admin.firestore();
