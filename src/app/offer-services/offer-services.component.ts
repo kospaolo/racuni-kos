@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
-import { SharedService } from '../shared.service';
 import { AddServiceComponent } from './add-service/add-service/add-service.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
 import { Service } from '../models/service.model';
+import { EditServiceComponent } from './edit-service/add-service/edit-service.component';
 
 @Component({
   selector: 'app-offer-services',
   templateUrl: './offer-services.component.html',
   styleUrl: './offer-services.component.scss',
 })
+
 export class OfferServicesComponent {
   constructor(
-    private sharedService: SharedService,
     public modal: NgbActiveModal,
     private modalService: NgbModal,
     private toastr: ToastrService,
     private apiService: ApiService
   ) {}
 
-  columns: string[] = ['name', 'description', 'price', 'action'];
+  columns: string[] = ['code', 'name', 'description', 'price', 'action'];
   services: Service[] = [];
 
   ngOnInit() {
-    this.getServices();
+    this.fetchServices();
   }
 
-  getServices() {
-    this.apiService.getServices().subscribe(services => {
+  fetchServices() {
+    this.apiService.fetchServices().subscribe(services => {
       this.services = services;
     }, error => {
       console.error('Error fetching data', error);
@@ -41,7 +41,23 @@ export class OfferServicesComponent {
       (result) => {
         if (result === 'added') {
           this.toastr.success('Service added!');
-          this.getServices();
+          this.fetchServices();
+        } else {
+          console.error('Service not deleted!');
+        }
+      },
+      (reason) => {}
+    );
+  }
+
+  editService(service_id: string) {
+    const modalRef = this.modalService.open(EditServiceComponent);
+    modalRef.componentInstance.service_id = service_id;
+    modalRef.result.then(
+      (result) => {
+        if (result === 'added') {
+          this.toastr.success('Service added!');
+          this.fetchServices();
         } else {
           console.error('Service not deleted!');
         }

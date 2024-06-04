@@ -37,9 +37,7 @@ export class PdfService {
       data = this.generateInvoiceData(invoice, services);
     }
 
-    console.log('Generated Data:', data);
-
-    doc.text(`${customer.firstName} ${customer.lastName}`, 10, 35);
+    doc.text(`${customer.firstname} ${customer.lastname}`, 10, 35);
     doc.text(customer.address, 10, 40);
     doc.text(`${customer.zip} ${customer.city}`, 10, 45);
 

@@ -70,5 +70,53 @@
   "customers_lastname": {
     "hr": "Prezime kupca",
     "en": "Customers last name"
+  },
+  "service_code": {
+    "hr": "Šifra usluge",
+    "en": "Service code"
+  },
+  "offer_number": {
+    "hr": "Broj ponude",
+    "en": "Offer number"
+  },
+  "edit_service": {
+    "hr": "Uredi uslugu",
+    "en": "Edit service"
+  },
+  "edit_offer": {
+    "hr": "Uredi ponudu",
+    "en": "Edit offer"
+  },
+  "firstname": {
+    "hr": "Ime",
+    "en": "First name"
+  },
+  "lastname": {
+    "hr": "Prezime",
+    "en": "Last name"
+  },
+  "email": {
+    "hr": "Email",
+    "en": "Email"
+  },
+  "mobilephone": {
+    "hr": "Broj mobitela",
+    "en": "Mobilephone"
+  },
+  "address": {
+    "hr": "Adresa",
+    "en": "Address"
+  },
+  "city": {
+    "hr": "Grad",
+    "en": "City"
+  },
+  "zip": {
+    "hr": "Poštanski broj",
+    "en": "ZIP"
+  },
+  "add_customer": {
+    "hr": "Dodaj kupca",
+    "en": "Add customer"
   }
 }

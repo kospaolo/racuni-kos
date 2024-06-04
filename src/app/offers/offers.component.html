@@ -1,37 +1,67 @@
+<div class="container mt-2 mb-2">
+  <button class="btn btn-primary" (click)="addOffer()">
+    {{ "add_offer" | translate }}
+  </button>
+</div>
+
 <div class="container mt-2">
-    <button class="btn btn-primary mt-4 mb-4" (click)="openAddOfferModal()">{{ "add_offer" | translate }}</button>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>{{ "customer" | translate }}</th>
-          <th>{{ "service" | translate }}</th>
-          <th>{{ "created" | translate }}</th>
-          <th>{{ "action" | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let offer of offers">
-          <td>{{ getCustomerName(offer.customerId) }}</td>
-          <td>{{ getServiceNames(offer.serviceIds) }}</td>
-          <td>{{ offer.created | date: 'dd.MM.yyyy. HH:mm' }}</td>
-          <td>
-            <button
-              class="btn btn-danger btn-sm"
-              (click)="deleteOffer(offer.id)"
-              data-toggle="tooltip"
-              title="Obriši"
-            >
-              <i class="fa fa-trash"></i>
-            </button>
-            <button
-              class="btn btn-success btn-sm ms-2"
-              (click)="downloadOfferPdf(offer.id)"
-              data-toggle="tooltip"
-              title="Preuzmi ponudu"
-            >
-              <i class="fa fa-download"></i>
-          </button>
-        </tr>
-      </tbody>
-    </table>
-  </div>  
+  <table mat-table [dataSource]="offers" class="mat-elevation-z8">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>{{ "offer_number" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.number }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef>{{ "customer" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ getCustomerName(element.customerId) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="service">
+      <th mat-header-cell *matHeaderCellDef>{{ "service" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ getServiceNames(element.serviceIds) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef>{{ "created" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.created | date: 'dd.MM.yyyy. HH:mm' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>{{ "action" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+<!--         <button
+        class="btn btn-warning btn-sm"
+        (click)="editOffer(element.id)"
+        data-toggle="tooltip"
+        title="Uredi ponudu"
+      >
+        <i class="fa fa-pen" style="color: #FFF;"></i>
+      </button> -->
+        <button
+        class="btn btn-success btn-sm ms-2"
+        (click)="downloadOfferPdf(element.id)"
+        data-toggle="tooltip"
+        title="Preuzmi ponudu"
+      >
+        <i class="fa fa-download"></i>
+      </button>
+        <button
+          class="btn btn-danger btn-sm ms-2"
+          (click)="deleteOffer(element.id)"
+          data-toggle="tooltip"
+          title="Obriši"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

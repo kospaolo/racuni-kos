@@ -26,6 +26,11 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from './services/api.service';
 import { AddOfferComponent } from './offers/add-offer/add-offer.component';
 import { OffersComponent } from './offers/offers.component';
+import { EditServiceComponent } from './offer-services/edit-service/add-service/edit-service.component';
+import { EditOfferComponent } from './offers/edit-offer/edit-offer.component';
+import { CustomersComponent } from './customers/customers.component';
+import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
+import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,8 +44,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     OfferServicesComponent,
     PageNotFoundComponent,
     AddServiceComponent,
+    EditServiceComponent,
     AddOfferComponent,
-    OffersComponent
+    OffersComponent,
+    EditOfferComponent,
+    CustomersComponent,
+    EditCustomerComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,

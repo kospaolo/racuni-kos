@@ -1,0 +1,88 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ "add_customer" | translate }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modal.dismiss('dismiss')"
+  >
+    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group mb-3">
+    <label for="customerFirstname">{{ "firstname" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerFirstname"
+      [(ngModel)]="newCustomer.firstname"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerLastname">{{ "lastname" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerLastname"
+      [(ngModel)]="newCustomer.lastname"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerEmail">{{ "email" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerEmail"
+      [(ngModel)]="newCustomer.email"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerMobilephone">{{ "mobilephone" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerMobilephone"
+      [(ngModel)]="newCustomer.mobilephone"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerAddress">{{ "address" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerAddress"
+      [(ngModel)]="newCustomer.address"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerCity">{{ "city" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerCity"
+      [(ngModel)]="newCustomer.city"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="customerZip">{{ "zip" | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="customerZip"
+      [(ngModel)]="newCustomer.zip"
+    />
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="modal.dismiss('cancel')"
+  >
+    Odustani
+  </button>
+  <button type="button" class="btn btn-primary" (click)="addCustomer()">
+    Dodaj
+  </button>
+</div>

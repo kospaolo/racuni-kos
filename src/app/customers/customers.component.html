@@ -1,0 +1,74 @@
+<div class="container mt-2 mb-2">
+    <button class="btn btn-primary" (click)="addCustomer()">
+      {{ "add_customer" | translate }}
+    </button>
+  </div>
+  
+  <div class="container mt-2">
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef>{{ "firstname" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef>{{ "lastname" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>{{ "email" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.email || '-' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mobilephone">
+        <th mat-header-cell *matHeaderCellDef>{{ "mobilephone" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.mobilephone || '-' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>{{ "address" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>{{ "city" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="zip">
+        <th mat-header-cell *matHeaderCellDef>{{ "zip" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.zip }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>{{ "action" | translate }}</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+          class="btn btn-warning btn-sm"
+          (click)="editCustomer(element.id)"
+          data-toggle="tooltip"
+          title="Uredi"
+        >
+          <i class="fa fa-pen" style="color: #FFF;"></i>
+        </button>
+          <button
+            class="btn btn-danger btn-sm ms-2"
+            (click)="deleteCustomer(element.id)"
+            data-toggle="tooltip"
+            title="Obriši"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>

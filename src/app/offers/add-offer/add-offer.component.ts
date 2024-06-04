@@ -9,9 +9,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-offer.component.scss']
 })
 export class AddOfferComponent implements OnInit {
-  newCustomer: any = { firstName: '', lastName: '' };
+  newCustomer: any = { firstname: '', lastname: '' };
   selectedServiceIds: string[] = [];
   services: any[] = [];
+  number: string = '';
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -24,7 +25,7 @@ export class AddOfferComponent implements OnInit {
   }
 
   loadServices(): void {
-    this.apiService.getServices().subscribe(
+    this.apiService.fetchServices().subscribe(
       services => {
         this.services = services;
       },
@@ -41,7 +42,7 @@ export class AddOfferComponent implements OnInit {
           customerId: customer.id,
           serviceIds: this.selectedServiceIds,
           created: new Date(),
-          number: "1"
+          number: this.number
         };
         this.apiService.addOffer(newOffer).subscribe(
           offer => {

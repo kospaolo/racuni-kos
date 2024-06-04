@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ "add_service" | translate }}</h4>
+  <h4 class="modal-title">{{ "edit_service" | translate }}</h4>
   <button
     type="button"
     class="close"
@@ -11,12 +11,12 @@
 </div>
 <div class="modal-body">
   <div class="form-group mb-3">
-    <label for="serviceCode">{{ "code" | translate }}</label>
+    <label for="serviceCode">{{ "service_code" | translate }}</label>
     <input
       type="text"
       class="form-control"
       id="serviceCode"
-      [(ngModel)]="newService.code"
+      [(ngModel)]="service.code"
     />
   </div>
   <div class="form-group mb-3">
@@ -25,7 +25,7 @@
       type="text"
       class="form-control"
       id="serviceName"
-      [(ngModel)]="newService.name"
+      [(ngModel)]="service.name"
     />
   </div>
   <div class="form-group mb-3">
@@ -33,7 +33,7 @@
     <textarea
       class="form-control"
       id="serviceDescription"
-      [(ngModel)]="newService.description"
+      [(ngModel)]="service.description"
     ></textarea>
   </div>
   <div class="form-group mb-3">
@@ -42,7 +42,7 @@
       type="number"
       class="form-control"
       id="servicePrice"
-      [(ngModel)]="newService.price"
+      [(ngModel)]="service.price"
     />
   </div>
 </div>
@@ -54,7 +54,7 @@
   >
     Odustani
   </button>
-  <button type="button" class="btn btn-primary" (click)="addService()">
-    Dodaj
+  <button type="button" class="btn btn-primary" (click)="editService()">
+    Uredi
   </button>
 </div>

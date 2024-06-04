@@ -7,6 +7,7 @@ import { Service } from '../models/service.model';
 import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
 import { PdfService } from '../services/pdf.service';
+import { EditOfferComponent } from './edit-offer/edit-offer.component';
 
 @Component({
   selector: 'app-offers',
@@ -14,7 +15,7 @@ import { PdfService } from '../services/pdf.service';
   styleUrls: ['./offers.component.scss'],
 })
 export class OffersComponent implements OnInit {
-  columns: string[] = ['name', 'description', 'price', 'action'];
+  columns: string[] = ['number', 'customer', 'service', 'created', 'action'];
   services: Service[] = [];
   offers: Offer[] = [];
   customers: Customer[] = [];
@@ -28,47 +29,56 @@ export class OffersComponent implements OnInit {
 
   ngOnInit() {
     this.getOffers();
-    this.getCustomers();
-    this.getServices();
+    this.fetchCustomers();
+    this.fetchServices();
   }
 
-  getServices() {
-    this.apiService.getServices().subscribe(services => {
-      this.services = services;
-    }, error => {
-      console.error('Error fetching data', error);
-    });
+  fetchServices() {
+    this.apiService.fetchServices().subscribe(
+      (services) => {
+        this.services = services;
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
   }
 
   getOffers() {
-    this.apiService.getOffers().subscribe(offers => {
-      this.offers = offers;
-    }, error => {
-      console.error('Error fetching offers', error);
-    });
+    this.apiService.getOffers().subscribe(
+      (offers) => {
+        this.offers = offers;
+      },
+      (error) => {
+        console.error('Error fetching offers', error);
+      }
+    );
   }
 
-  getCustomers() {
-    this.apiService.getCustomers().subscribe(customers => {
-      this.customers = customers;
-    }, error => {
-      console.error('Error fetching customers', error);
-    });
+  fetchCustomers() {
+    this.apiService.fetchCustomers().subscribe(
+      (customers) => {
+        this.customers = customers;
+      },
+      (error) => {
+        console.error('Error fetching customers', error);
+      }
+    );
   }
 
   getCustomerName(customerId: any): string {
-    const customer = this.customers.find(c => c.id === customerId);
-    return customer ? `${customer.firstName} ${customer.lastName}` : 'Unknown';
+    const customer = this.customers.find((c) => c.id === customerId);
+    return customer ? `${customer.firstname} ${customer.lastname}` : 'Unknown';
   }
 
   getServiceNames(serviceIds: any[]): string {
     return this.services
-      .filter(service => serviceIds.includes(service.id))
-      .map(service => service.name)
+      .filter((service) => serviceIds.includes(service.id))
+      .map((service) => service.name)
       .join(', ');
   }
 
-  openAddOfferModal() {
+  addOffer() {
     const modalRef = this.modalService.open(AddOfferComponent);
     modalRef.result.then(
       (result) => {
@@ -81,25 +91,42 @@ export class OffersComponent implements OnInit {
     );
   }
 
+  editOffer(offer_id: string) {
+    const modalRef = this.modalService.open(EditOfferComponent);
+    modalRef.componentInstance.offer_id = offer_id;
+    modalRef.result.then(
+      (result) => {
+        if (result === 'added') {
+          this.toastr.success('Offer added!');
+          this.getOffers();
+        }
+      },
+      (reason) => {}
+    );
+  }
+
   deleteOffer(offerId: string) {
-    this.apiService.deleteOffer(offerId).subscribe(() => {
-      this.toastr.success('Offer deleted!');
-      this.getOffers();
-    }, error => {
-      console.error('Error deleting offer', error);
-      this.toastr.error('Failed to delete offer');
-    });
+    this.apiService.deleteOffer(offerId).subscribe(
+      () => {
+        this.toastr.success('Offer deleted!');
+        this.getOffers();
+      },
+      (error) => {
+        console.error('Error deleting offer', error);
+        this.toastr.error('Failed to delete offer');
+      }
+    );
   }
 
   downloadOfferPdf(offerId: string) {
-    const offer = this.offers.find(o => o.id === offerId);
+    const offer = this.offers.find((o) => o.id === offerId);
 
     if (!offer) {
       this.toastr.error('Offer not found');
       return;
     }
 
-    const customer = this.customers.find(c => c.id === offer.customerId);
+    const customer = this.customers.find((c) => c.id === offer.customerId);
     if (!customer) {
       this.toastr.error('Customer not found');
       return;
