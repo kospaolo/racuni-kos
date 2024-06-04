@@ -132,7 +132,7 @@ export class OffersComponent implements OnInit {
       return;
     }
 
-    this.pdfService.generatePdf(customer, this.services, offer);
-    this.toastr.success('Offer created!');
+    this.pdfService.generatePdf(customer, this.services, offer, undefined);
+    this.toastr.success('Offer downloaded!');
   }
 }

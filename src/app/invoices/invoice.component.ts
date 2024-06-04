@@ -122,7 +122,7 @@ export class InvoicesComponent implements OnInit {
     const invoice = this.invoices.find((o) => o.id === invoice_id);
 
     if (!invoice) {
-      this.toastr.error('Offer not found');
+      this.toastr.error('Invoice not found');
       return;
     }
 
@@ -132,7 +132,7 @@ export class InvoicesComponent implements OnInit {
       return;
     }
 
-    this.pdfService.generatePdf(customer, this.services, invoice);
-    this.toastr.success('Offer created!');
+    this.pdfService.generatePdf(customer, this.services, undefined, invoice);
+    this.toastr.success('Invoice downloaded!');
   }
 }

@@ -24,8 +24,8 @@ export class PdfService {
 
     doc.text('"KOS" OBRT ZA PRIJEVOZ I USLUGE', 10, 10);
     doc.text('vl. MARKO KOS, SNAŠIĆI 2G, 52220 LABIN', 10, 15);
-    doc.text('OIB 79380920480', 10, 20);
-    doc.text('IBAN HR9723400091160647327 kod PBZ d.d.', 10, 25);
+    doc.text('OIB: 79380920480', 10, 20);
+    doc.text('IBAN: HR9723400091160647327 kod PBZ d.d.', 10, 25);
 
     let data: any;
 
@@ -53,6 +53,7 @@ export class PdfService {
         new Date().toLocaleDateString(),
         new Date().toLocaleDateString()
       ]],
+      styles: {font: "Roboto"}
     });
 
     const finalY = (doc as any).lastAutoTable.finalY;
@@ -60,7 +61,8 @@ export class PdfService {
     autoTable(doc, {
       startY: finalY + 10,
       head: [['Šifra robe', 'Naziv robe/usluge', 'J.mj.', 'Količina', 'Cijena', 'Iznos']],
-      body: data.services
+      body: data.services,
+      styles: {font: "Roboto"}
     });
 
     const finalY2 = (doc as any).lastAutoTable.finalY;
@@ -74,6 +76,7 @@ export class PdfService {
       startY: finalY2 + 40,
       head: [['Načina plaćanja', 'Oznaka operatera', 'Datum', 'Vrijeme']],
       body: [['Transakcijski račun', '1', new Date().toLocaleDateString(), '10:00:54']],
+      styles: {font: "Roboto"}
     });
 
     const finalY3 = (doc as any).lastAutoTable.finalY;
@@ -81,7 +84,7 @@ export class PdfService {
     doc.text(data.footer_text, 150, finalY3 + 20);
     doc.text('Stranica: 1', 150, finalY3 + 25);
 
-    doc.save(`Ponuda ${data.number}.pdf`);
+    doc.save(`${data.title} ${data.number}.pdf`);
   }
 
   generateOfferData(offer: Offer, services: Service[]) {
