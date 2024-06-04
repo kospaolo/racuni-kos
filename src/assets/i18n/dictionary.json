@@ -126,5 +126,9 @@
   "add_invoice": {
     "hr": "Dodaj račun",
     "en": "Add invoice"
+  },
+  "edit_customer": {
+    "hr": "Uredi kupca",
+    "en": "Edit customer"
   }
 }

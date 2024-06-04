@@ -56,10 +56,10 @@ export class OfferServicesComponent {
     modalRef.result.then(
       (result) => {
         if (result === 'added') {
-          this.toastr.success('Service added!');
+          this.toastr.success('Service edited!');
           this.fetchServices();
         } else {
-          console.error('Service not deleted!');
+          console.error('Service not edited!');
         }
       },
       (reason) => {}

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
 import { Invoice } from '../models/invoice.model';
+import { Service } from '../models/service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,16 +27,16 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/add-service`, data);
   }
 
-  editService(serviceId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/edit-service/${serviceId}`);
+  editService(serviceId: string, service: Service): Observable<any> {
+    return this.http.put(`${this.apiUrl}/edit-service/${serviceId}`, service);
   }
 
   deleteService(serviceId: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete-service/${serviceId}`);
   }
 
-  getOffers(): Observable<Offer[]> {
-    return this.http.get<Offer[]>(`${this.apiUrl}/get-offers`);
+  fetchOffers(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${this.apiUrl}/fetch-offers`);
   }
 
   addOffer(offer: Offer): Observable<Offer> {
@@ -50,8 +51,8 @@ export class ApiService {
     return this.http.post<Customer>(`${this.apiUrl}/add-customer`, customer);
   }
 
-  editOffer(offerId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/edit-offer/${offerId}`);
+  editOffer(offerId: string, offer: Offer): Observable<any> {
+    return this.http.put(`${this.apiUrl}/edit-offer/${offerId}`, offer);
   }
 
   deleteOffer(offerId: string): Observable<any> {
@@ -62,8 +63,8 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/get-customer/${customer_id}`);
   }
 
-  editCustomer(customer_id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/edit-customer/${customer_id}`);
+  editCustomer(customer_id: string, customer: Customer): Observable<any> {
+    return this.http.put(`${this.apiUrl}/edit-customer/${customer_id}`, customer);
   }
 
   deleteCustomer(customer_id: string): Observable<any> {
@@ -76,6 +77,10 @@ export class ApiService {
 
   addInvoice(invoice: Invoice): Observable<Offer> {
     return this.http.post<Invoice>(`${this.apiUrl}/add-invoice`, invoice);
+  }
+
+  editInvoice(offerId: string, invoice: Invoice): Observable<any> {
+    return this.http.put(`${this.apiUrl}/edit-invoice/${offerId}`, invoice);
   }
 
   deleteInvoice(invoice_id: string): Observable<any> {

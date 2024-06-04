@@ -50,12 +50,13 @@ app.post('/api/add-service', async (req, res) => {
   }
 });
 
-app.get('/api/edit-service/:id', async (req, res) => {
+app.put('/api/edit-service/:id', async (req, res) => {
   try {
     const db = admin.firestore();
     const id = req.params.id;
-    const data = await db.collection('services').doc(id).get();
-    res.json(data);
+    const service = req.body;
+    await db.collection('services').doc(id).update(service);
+    res.json({ message: 'Service updated successfully' });
   } catch (error) {
     res.status(500).send(error.toString());
   }
@@ -72,7 +73,7 @@ app.delete('/api/delete-service/:id', async (req, res) => {
   }
 });
 
-app.get('/api/get-offers', async (req, res) => {
+app.get('/api/fetch-offers', async (req, res) => {
   try {
     const db = admin.firestore();
     const snapshot = await db.collection('offers').get();
@@ -94,12 +95,13 @@ app.post('/api/add-offer', async (req, res) => {
   }
 });
 
-app.get('/api/edit-offer/:id', async (req, res) => {
+app.put('/api/edit-offer/:id', async (req, res) => {
   try {
     const db = admin.firestore();
     const id = req.params.id;
-    const data = await db.collection('offers').doc(id).get();
-    res.json(data);
+    const offer = req.body;
+    await db.collection('offers').doc(id).update(offer);
+    res.json({ message: 'Offer updated successfully' });
   } catch (error) {
     res.status(500).send(error.toString());
   }
@@ -149,12 +151,13 @@ app.get('/api/get-customer/:id', async (req, res) => {
   }
 });
 
-app.get('/api/edit-customer/:id', async (req, res) => {
+app.put('/api/edit-customer/:id', async (req, res) => {
   try {
     const db = admin.firestore();
     const id = req.params.id;
-    const data = await db.collection('customers').doc(id).get();
-    res.json(data);
+    const customer = req.body;
+    await db.collection('customers').doc(id).update(customer);
+    res.json({ message: 'Customer updated successfully' });
   } catch (error) {
     res.status(500).send(error.toString());
   }
@@ -193,12 +196,13 @@ app.post('/api/add-invoice', async (req, res) => {
   }
 });
 
-app.get('/api/edit-invoice/:id', async (req, res) => {
+app.put('/api/edit-invoice/:id', async (req, res) => {
   try {
     const db = admin.firestore();
     const id = req.params.id;
-    const data = await db.collection('invoices').doc(id).get();
-    res.json(data);
+    const invoice = req.body;
+    await db.collection('invoices').doc(id).update(invoice);
+    res.json({ message: 'Invoice updated successfully' });
   } catch (error) {
     res.status(500).send(error.toString());
   }

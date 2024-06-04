@@ -28,7 +28,7 @@ export class OffersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getOffers();
+    this.fetchOffers();
     this.fetchCustomers();
     this.fetchServices();
   }
@@ -44,8 +44,8 @@ export class OffersComponent implements OnInit {
     );
   }
 
-  getOffers() {
-    this.apiService.getOffers().subscribe(
+  fetchOffers() {
+    this.apiService.fetchOffers().subscribe(
       (offers) => {
         this.offers = offers;
       },
@@ -84,7 +84,7 @@ export class OffersComponent implements OnInit {
       (result) => {
         if (result === 'added') {
           this.toastr.success('Offer added!');
-          this.getOffers();
+          this.fetchOffers();
         }
       },
       (reason) => {}
@@ -98,7 +98,7 @@ export class OffersComponent implements OnInit {
       (result) => {
         if (result === 'added') {
           this.toastr.success('Offer added!');
-          this.getOffers();
+          this.fetchOffers();
         }
       },
       (reason) => {}
@@ -109,7 +109,7 @@ export class OffersComponent implements OnInit {
     this.apiService.deleteOffer(offerId).subscribe(
       () => {
         this.toastr.success('Offer deleted!');
-        this.getOffers();
+        this.fetchOffers();
       },
       (error) => {
         console.error('Error deleting offer', error);

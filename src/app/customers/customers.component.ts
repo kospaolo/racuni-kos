@@ -38,7 +38,7 @@ export class CustomersComponent {
     modalRef.result.then(
       (result) => {
         if (result === 'added') {
-          this.toastr.success('Offer added!');
+          this.toastr.success('Customer added!');
           this.fetchCustomers();
         }
       },
@@ -52,10 +52,10 @@ export class CustomersComponent {
     modalRef.result.then(
       (result) => {
         if (result === 'added') {
-          this.toastr.success('Service added!');
+          this.toastr.success('Customer edited!');
           this.fetchCustomers();
         } else {
-          console.error('Service not deleted!');
+          console.error('Customer not edited!');
         }
       },
       (reason) => {}
@@ -65,12 +65,12 @@ export class CustomersComponent {
   deleteCustomer(customer_id: string) {
     this.apiService.deleteCustomer(customer_id).subscribe(
       (response) => {
-        this.toastr.success('Service deleted!');
+        this.toastr.success('Customer deleted!');
         this.customers = this.customers.filter((item) => item.id !== customer_id);
       },
       (error) => {
-        this.toastr.error('Service not deleted!');
-        console.error('Error deleting service:', error);
+        this.toastr.error('Customer not deleted!');
+        console.error('Error deleting customer:', error);
       }
     );
   }

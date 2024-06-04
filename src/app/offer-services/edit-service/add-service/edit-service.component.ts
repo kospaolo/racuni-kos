@@ -17,7 +17,7 @@ export class EditServiceComponent {
     name: '',
     description: '',
     price: 0,
-    code: 1
+    code: 0
   };
 
   @Input() public service_id: any;
@@ -32,7 +32,7 @@ export class EditServiceComponent {
   }
 
   editService() {
-    this.apiService.editService(this.service_id).subscribe(res => {
+    this.apiService.editService(this.service_id, this.service).subscribe(res => {
       this.modal.close('added');
     }, error => {
       console.error('Error adding service', error);

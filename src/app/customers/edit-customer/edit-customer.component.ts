@@ -33,7 +33,7 @@ export class EditCustomerComponent {
   }
 
   editCustomer() {
-    this.apiService.editCustomer(this.customer_id).subscribe(res => {
+    this.apiService.editCustomer(this.customer_id, this.customer).subscribe(res => {
       this.modal.close('added');
     }, error => {
       console.error('Error customer edit', error);
