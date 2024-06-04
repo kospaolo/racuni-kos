@@ -118,5 +118,13 @@
   "add_customer": {
     "hr": "Dodaj kupca",
     "en": "Add customer"
+  },
+  "invoice_number": {
+    "hr": "Broj računa",
+    "en": "Invoice number"
+  },
+  "add_invoice": {
+    "hr": "Dodaj račun",
+    "en": "Add invoice"
   }
 }

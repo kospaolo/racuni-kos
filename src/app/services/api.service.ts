@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
+import { Invoice } from '../models/invoice.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,17 @@ export class ApiService {
 
   deleteCustomer(customer_id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete-customer/${customer_id}`);
+  }
+
+  fetchInvoices(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(`${this.apiUrl}/fetch-invoices`);
+  }
+
+  addInvoice(invoice: Invoice): Observable<Offer> {
+    return this.http.post<Invoice>(`${this.apiUrl}/add-invoice`, invoice);
+  }
+
+  deleteInvoice(invoice_id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete-invoice/${invoice_id}`);
   }
 }

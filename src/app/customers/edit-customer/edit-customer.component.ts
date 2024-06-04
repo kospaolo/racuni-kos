@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Customer } from 'src/app/models/customer.model';
 
 @Component({
-  selector: 'app-edit-service',
+  selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
   styleUrl: './edit-customer.component.scss'
 })

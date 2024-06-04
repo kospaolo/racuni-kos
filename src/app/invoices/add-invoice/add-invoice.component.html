@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ "add_invoice" | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="createInvoice()">
+      <div class="form-group mt-2">
+        <label for="number">{{ "invoice_number" | translate }}</label>
+        <input type="text" id="number" [(ngModel)]="number" name="number" class="form-control" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="firstname">{{ "customers_firstname" | translate }}</label>
+        <input type="text" id="firstname" [(ngModel)]="newCustomer.firstname" name="firstname" class="form-control" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="lastname">{{ "customers_lastname" | translate }}</label>
+        <input type="text" id="lastname" [(ngModel)]="newCustomer.lastname" name="lastname" class="form-control" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="services">{{ "services" | translate }}</label>
+        <select multiple id="services" [(ngModel)]="selectedServiceIds" name="services" class="form-control">
+          <option *ngFor="let service of services" [value]="service.id">{{ service.name }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Create Invoice</button>
+    </form>
+  </div>  

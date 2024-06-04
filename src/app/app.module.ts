@@ -31,6 +31,9 @@ import { EditOfferComponent } from './offers/edit-offer/edit-offer.component';
 import { CustomersComponent } from './customers/customers.component';
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
+import { InvoicesComponent } from './invoices/invoice.component';
+import { AddInvoiceComponent } from './invoices/add-invoice/add-invoice.component';
+import { EditInvoiceComponent } from './invoices/edit-invoice/edit-invoice.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,7 +53,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditOfferComponent,
     CustomersComponent,
     EditCustomerComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    InvoicesComponent,
+    AddInvoiceComponent,
+    EditInvoiceComponent
   ],
   imports: [
     BrowserModule,

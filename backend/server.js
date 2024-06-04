@@ -171,6 +171,50 @@ app.delete('/api/delete-customer/:id', async (req, res) => {
   }
 });
 
+app.get('/api/fetch-invoices', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const snapshot = await db.collection('invoices').get();
+    const invoices = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    res.json(invoices);
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
+app.post('/api/add-invoice', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const invoice = req.body;
+    const docRef = await db.collection('invoices').add(invoice);
+    res.json({ id: docRef.id, ...invoice });
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
+app.get('/api/edit-invoice/:id', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const id = req.params.id;
+    const data = await db.collection('invoices').doc(id).get();
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
+app.delete('/api/delete-invoice/:id', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const id = req.params.id;
+    await db.collection('invoices').doc(id).delete();
+    res.json({ message: 'Invoice deleted' });
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

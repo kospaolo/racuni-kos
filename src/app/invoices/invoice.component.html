@@ -1,0 +1,67 @@
+<div class="container mt-2 mb-2">
+  <button class="btn btn-primary" (click)="addInvoice()">
+    {{ "add_invoice" | translate }}
+  </button>
+</div>
+
+<div class="container mt-2">
+  <table mat-table [dataSource]="invoices" class="mat-elevation-z8">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>{{ "invoice_number" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.number }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef>{{ "customer" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ getCustomerName(element.customerId) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="service">
+      <th mat-header-cell *matHeaderCellDef>{{ "service" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ getServiceNames(element.serviceIds) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef>{{ "created" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.created | date: 'dd.MM.yyyy. HH:mm' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>{{ "action" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+<!--         <button
+        class="btn btn-warning btn-sm"
+        (click)="editInvoice(element.id)"
+        data-toggle="tooltip"
+        title="Uredi račun"
+      >
+        <i class="fa fa-pen" style="color: #FFF;"></i>
+      </button> -->
+        <button
+        class="btn btn-success btn-sm ms-2"
+        (click)="downloadInvoicePdf(element.id)"
+        data-toggle="tooltip"
+        title="Preuzmi račun"
+      >
+        <i class="fa fa-download"></i>
+      </button>
+        <button
+          class="btn btn-danger btn-sm ms-2"
+          (click)="deleteInvoice(element.id)"
+          data-toggle="tooltip"
+          title="Obriši"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
