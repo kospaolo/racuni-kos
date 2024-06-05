@@ -38,8 +38,8 @@ export class PdfService {
     }
 
     doc.text(`${customer.firstname} ${customer.lastname}`, 10, 35);
-    doc.text(customer.address, 10, 40);
-    doc.text(`${customer.zip} ${customer.city}`, 10, 45);
+    doc.text(customer.address || '', 10, 40);
+    doc.text(`${customer.zip || ''} ${customer.city || ''}`, 10, 45);
 
     doc.text(`${data.title} ${data.number}`, 150, 35);
 
