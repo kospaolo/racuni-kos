@@ -71,10 +71,16 @@ export class InvoicesComponent implements OnInit {
     return customer ? `${customer.firstname} ${customer.lastname}` : 'Unknown';
   }
 
-  getServiceNames(serviceIds: any[]): string {
-    return this.services
-      .filter((service) => serviceIds.includes(service.id))
-      .map((service) => service.name)
+  getServiceNames(serv: any[]): string {
+    if (!serv || !Array.isArray(serv)) {
+      return '';
+    }
+    return serv
+      .map((s) => {
+        const service = this.services.find((service) => service.id === s.serviceId);
+        return service ? service.name : '';
+      })
+      .filter((name) => name)
       .join(', ');
   }
 

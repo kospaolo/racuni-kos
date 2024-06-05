@@ -9,9 +9,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-offer.component.scss']
 })
 export class AddOfferComponent implements OnInit {
-  newCustomer: any = { firstname: '', lastname: '' };
-  selectedServiceIds: string[] = [];
+  selectedCustomerId: string = '';
+  selectedServiceIds: { [key: string]: boolean } = {};
+  serviceQuantities: { [key: string]: number } = {};
   services: any[] = [];
+  customers: any[] = [];
   number: string = '';
 
   constructor(
@@ -22,6 +24,7 @@ export class AddOfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadServices();
+    this.loadCustomers();
   }
 
   loadServices(): void {
@@ -35,29 +38,47 @@ export class AddOfferComponent implements OnInit {
     );
   }
 
-  createOffer(): void {
-    this.apiService.addCustomer(this.newCustomer).subscribe(
-      customer => {
-        const newOffer = {
-          customerId: customer.id,
-          serviceIds: this.selectedServiceIds,
-          created: new Date(),
-          number: this.number
-        };
-        this.apiService.addOffer(newOffer).subscribe(
-          offer => {
-            this.toastr.success('Offer created!');
-            this.activeModal.close('added');
-          },
-          error => {
-            this.toastr.error('Error creating offer');
-            console.error('Error creating offer:', error);
-          }
-        );
+  loadCustomers(): void {
+    this.apiService.fetchCustomers().subscribe(
+      customers => {
+        this.customers = customers;
       },
       error => {
-        this.toastr.error('Error creating customer');
-        console.error('Error creating customer:', error);
+        console.error('Error fetching customers', error);
+      }
+    );
+  }
+
+  createOffer(): void {
+    const selectedCustomer = this.customers.find(customer => customer.id === this.selectedCustomerId);
+    
+    if (!selectedCustomer) {
+      this.toastr.error('Please select a valid customer');
+      return;
+    }
+
+    const selectedServicesWithQuantities = Object.keys(this.selectedServiceIds)
+      .filter(id => this.selectedServiceIds[id])
+      .map(id => ({
+        serviceId: id,
+        quantity: this.serviceQuantities[id] || 1
+      }));
+
+    const newOffer = {
+      customerId: selectedCustomer.id,
+      services: selectedServicesWithQuantities,
+      created: new Date(),
+      number: this.number
+    };
+
+    this.apiService.addOffer(newOffer).subscribe(
+      offer => {
+        this.toastr.success('Offer created!');
+        this.activeModal.close('added');
+      },
+      error => {
+        this.toastr.error('Error creating offer');
+        console.error('Error creating offer:', error);
       }
     );
   }

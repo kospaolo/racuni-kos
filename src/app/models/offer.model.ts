@@ -1,7 +1,7 @@
 export interface Offer {
-    id?: any;
-    customerId: any;
-    serviceIds: string[];
-    created: Date;
-    number: string;
-  }
+  id?: any;
+  customerId: any;
+  services: { serviceId: string; quantity: number }[];
+  created: Date;
+  number: string;
+}

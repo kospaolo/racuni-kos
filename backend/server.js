@@ -219,6 +219,32 @@ app.delete('/api/delete-invoice/:id', async (req, res) => {
   }
 });
 
+app.get('/api/search-customers', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const query = req.query.q.toLowerCase();
+    console.log(query)
+
+    const customersRef = db.collection('customers');
+    const snapshot = await customersRef.get();
+    const customers = [];
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const firstName = data.firstname.toLowerCase();
+      const lastName = data.lastname.toLowerCase();
+
+      if (firstName.includes(query) || lastName.includes(query)) {
+        customers.push({ id: doc.id, ...doc.data() });
+      }
+    });
+
+    res.json(customers);
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

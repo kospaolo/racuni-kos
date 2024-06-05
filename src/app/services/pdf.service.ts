@@ -88,15 +88,15 @@ export class PdfService {
   }
 
   generateOfferData(offer: Offer, services: Service[]) {
-    const addedServices = offer.serviceIds.map(id => {
-      const service = services.find(s => s.id === id);
+    const addedServices = offer.services.map(serv => {
+      const service = services.find(s => s.id === serv.serviceId);
       return service ? [
         service.code,
         service.name,
         'kom',
-        1,
+        serv.quantity,
         service.price,
-        1 * service.price
+        serv.quantity * service.price
       ] : [];
     });
 
@@ -110,15 +110,15 @@ export class PdfService {
   }
 
   generateInvoiceData(invoice: Invoice, services: Service[]) {
-    const addedServices = invoice.serviceIds.map(id => {
-      const service = services.find(s => s.id === id);
+    const addedServices = invoice.services.map(serv => {
+      const service = services.find(s => s.id === serv.serviceId);
       return service ? [
         service.code,
         service.name,
         'kom',
-        1,
+        serv.quantity,
         service.price,
-        1 * service.price
+        serv.quantity * service.price
       ] : [];
     });
 

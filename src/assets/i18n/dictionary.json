@@ -130,5 +130,9 @@
   "edit_customer": {
     "hr": "Uredi kupca",
     "en": "Edit customer"
+  },
+  "search_customer": {
+    "hr": "Pronađi kupca",
+    "en": "Search customer"
   }
 }

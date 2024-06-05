@@ -75,7 +75,7 @@ export class ApiService {
     return this.http.get<Invoice[]>(`${this.apiUrl}/fetch-invoices`);
   }
 
-  addInvoice(invoice: Invoice): Observable<Offer> {
+  addInvoice(invoice: Invoice): Observable<Invoice> {
     return this.http.post<Invoice>(`${this.apiUrl}/add-invoice`, invoice);
   }
 
@@ -85,5 +85,9 @@ export class ApiService {
 
   deleteInvoice(invoice_id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete-invoice/${invoice_id}`);
+  }
+
+  searchCustomers(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`/api/search-customers?q=${query}`);
   }
 }

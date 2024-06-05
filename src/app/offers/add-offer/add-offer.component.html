@@ -1,29 +1,33 @@
 <div class="modal-header justify-content-between align-items-start">
-    <h4 class="modal-title">{{ "add_offer" | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-      <span aria-hidden="true"><i class="fa fa-times"></i></span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form (ngSubmit)="createOffer()">
+  <h4 class="modal-title">{{ "add_offer" | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="createOffer()">
       <div class="form-group mt-2">
-        <label for="number">{{ "offer_number" | translate }}</label>
-        <input type="text" id="number" [(ngModel)]="number" name="number" class="form-control" required>
+          <label for="number">{{ "offer_number" | translate }}</label>
+          <input type="text" id="number" [(ngModel)]="number" name="number" class="form-control" required>
       </div>
       <div class="form-group mt-2">
-        <label for="firstname">{{ "customers_firstname" | translate }}</label>
-        <input type="text" id="firstname" [(ngModel)]="newCustomer.firstname" name="firstname" class="form-control" required>
-      </div>
-      <div class="form-group mt-2">
-        <label for="lastname">{{ "customers_lastname" | translate }}</label>
-        <input type="text" id="lastname" [(ngModel)]="newCustomer.lastname" name="lastname" class="form-control" required>
-      </div>
-      <div class="form-group mt-2">
-        <label for="services">{{ "services" | translate }}</label>
-        <select multiple id="services" [(ngModel)]="selectedServiceIds" name="services" class="form-control">
-          <option *ngFor="let service of services" [value]="service.id">{{ service.name }}</option>
+        <label for="customer">{{ "customer" | translate }}</label>
+        <select id="customer" [(ngModel)]="selectedCustomerId" name="customer" class="form-control" required>
+          <option *ngFor="let customer of customers" [value]="customer.id">
+            {{ customer.firstname }} {{ customer.lastname }}
+          </option>
         </select>
       </div>
+      <div class="form-group mt-2">
+          <label for="services">{{ "services" | translate }}</label>
+          <div *ngFor="let service of services" class="d-flex align-items-center mb-2">
+            <div class="d-flex align-items-center">
+                <input type="checkbox" [(ngModel)]="selectedServiceIds[service.id]" name="service-{{service.id}}" [value]="service.id" class="form-check-input me-2">
+                <label class="form-check-label me-2">{{ service.name }}</label>
+                <input type="number" [(ngModel)]="serviceQuantities[service.id]" name="quantity-{{service.id}}" class="form-control ms-4" style="max-width: 100px; width: 100%;" placeholder="Količina" min="1" *ngIf="selectedServiceIds[service.id]">
+            </div>
+          </div>
+      </div>
       <button type="submit" class="btn btn-primary mt-2">{{ "add" | translate }}</button>
-    </form>
-  </div>  
+  </form>
+</div>
