@@ -134,5 +134,25 @@
   "search_customer": {
     "hr": "Pronađi kupca",
     "en": "Search customer"
+  },
+  "no_offers_available": {
+    "hr": "Trenutno nema dostupnih ponuda.",
+    "en": "No offers available at the moment."
+  },
+  "no_invoices_available": {
+    "hr": "Trenutno nema dostupnih računa.",
+    "en": "No invoices available at the moment."
+  },
+  "no_services_available": {
+    "hr": "Trenutno nema dostupnih usluga.",
+    "en": "No services available at the moment."
+  },
+  "no_customers_available": {
+    "hr": "Trenutno nema dostupnih kupaca.",
+    "en": "No customers available at the moment."
+  },
+  "intro_title": {
+    "hr": "Računi Kos",
+    "en": "Računi Kos"
   }
 }
