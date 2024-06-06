@@ -4,12 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Frontend
 
-Run `npm i`
-Run `ng serve`
+Run `npm i`\
+Run `ng serve`\
 Navigate to `http://localhost:4200/`
 
 ## Backend
 
-Run `cd backend`
-Run `npm i`
+Run `cd backend`\
+Run `npm i`\
 Run `node server.js`
