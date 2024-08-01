@@ -1,27 +1,67 @@
-# Racuni-kos
+# Racuni Kos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Custom invoice management system.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Invoice and Offer management (Create, Update, Delete)
+- Creating customers
+- Generating PDF with predefined styling
+  
+## Technologies Used
 
-## Code scaffolding
+- Angular
+- Typescript
+- Nodejs
+- Express
+- Firebase
+- jsPDF
+  
+## Run a project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To run this project locally:
 
-## Build
+1. **Clone the repository:**
+   
+```bash
+git clone https://github.com/kospaolo/racuni-kos.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. **Navigate to the project directory:**
+   
+```bash
+cd racuni-kos
+```
 
-## Running unit tests
+3. **Install frontend dependencies:**
+   
+```bash
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. **Run the frontend:**
+```bash
+ng serve
+```
 
-## Running end-to-end tests
+5. **Navigate to backend**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+cd backend
+```
 
-## Further help
+6. **Install backend dependencies:**
+   
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+7. **Run server**
+
+```bash
+node server.js
+```
+
+8. Open project in browser
+
+Navigate to `http://localhost:4200/`
