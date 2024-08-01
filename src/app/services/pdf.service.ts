@@ -22,10 +22,10 @@ export class PdfService {
     doc.setFont('Roboto');
     doc.setFontSize(10);
 
-    doc.text('"KOS" OBRT ZA PRIJEVOZ I USLUGE', 10, 10);
-    doc.text('vl. MARKO KOS, SNAŠIĆI 2G, 52220 LABIN', 10, 15);
-    doc.text('OIB: 79380920480', 10, 20);
-    doc.text('IBAN: HR9723400091160647327 kod PBZ d.d.', 10, 25);
+    doc.text('"KOS" OBRT ZA IZRADU WEB STRANICA', 10, 10);
+    doc.text('vl. PAOLO KOS, SNAŠIĆI 2A, 52220 LABIN', 10, 15);
+    doc.text('OIB: 11123334455', 10, 20);
+    doc.text('IBAN: HR112233445566778899 kod PBZ d.d.', 10, 25);
 
     let data: any;
 
@@ -80,7 +80,7 @@ export class PdfService {
     });
 
     const finalY3 = (doc as any).lastAutoTable.finalY;
-    doc.text('"KOS" - OBRT ZA PRIJEVOZ I USLUGE', 10, finalY3 + 20);
+    doc.text('"KOS" - OBRT ZA IZRADU WEB STRANICA', 10, finalY3 + 20);
     doc.text(data.footer_text, 150, finalY3 + 20);
     doc.text('Stranica: 1', 150, finalY3 + 25);
 
