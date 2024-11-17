@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SharedService } from 'src/app/shared.service';
-import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { Service } from 'src/app/models/service.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-service',
-  templateUrl: './add-service.component.html',
-  styleUrl: './add-service.component.scss'
+    selector: 'app-add-service',
+    templateUrl: './add-service.component.html',
+    styleUrl: './add-service.component.scss',
+    standalone: true,
+    imports: [FormsModule, TranslateModule]
 })
 export class AddServiceComponent {
 

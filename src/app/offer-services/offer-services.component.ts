@@ -5,11 +5,31 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
 import { Service } from '../models/service.model';
 import { EditServiceComponent } from './edit-service/add-service/edit-service.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CurrencyPipe } from '@angular/common';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 
 @Component({
-  selector: 'app-offer-services',
-  templateUrl: './offer-services.component.html',
-  styleUrl: './offer-services.component.scss',
+    selector: 'app-offer-services',
+    templateUrl: './offer-services.component.html',
+    styleUrl: './offer-services.component.scss',
+    standalone: true,
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+        CurrencyPipe,
+        TranslateModule,
+    ],
 })
 
 export class OfferServicesComponent {

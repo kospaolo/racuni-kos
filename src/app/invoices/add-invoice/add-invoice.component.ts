@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-invoice',
-  templateUrl: './add-invoice.component.html',
-  styleUrls: ['./add-invoice.component.scss']
+    selector: 'app-add-invoice',
+    templateUrl: './add-invoice.component.html',
+    styleUrls: ['./add-invoice.component.scss'],
+    standalone: true,
+    imports: [FormsModule, NgFor, NgIf, TranslateModule]
 })
 export class AddInvoiceComponent implements OnInit {
   selectedCustomerId: string = '';

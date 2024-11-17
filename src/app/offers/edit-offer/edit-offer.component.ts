@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-edit-offer',
-  templateUrl: './edit-offer.component.html',
-  styleUrls: ['./edit-offer.component.scss']
+    selector: 'app-edit-offer',
+    templateUrl: './edit-offer.component.html',
+    styleUrls: ['./edit-offer.component.scss'],
+    standalone: true
 })
 
 export class EditOfferComponent implements OnInit {

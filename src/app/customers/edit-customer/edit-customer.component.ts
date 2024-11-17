@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SharedService } from 'src/app/shared.service';
-import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { Customer } from 'src/app/models/customer.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-customer',
-  templateUrl: './edit-customer.component.html',
-  styleUrl: './edit-customer.component.scss'
+    selector: 'app-edit-customer',
+    templateUrl: './edit-customer.component.html',
+    styleUrl: './edit-customer.component.scss',
+    standalone: true,
+    imports: [FormsModule, TranslateModule]
 })
 export class EditCustomerComponent {
 

@@ -8,11 +8,31 @@ import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
 import { PdfService } from '../services/pdf.service';
 import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.scss'],
+    selector: 'app-invoices',
+    templateUrl: './invoice.component.html',
+    styleUrls: ['./invoice.component.scss'],
+    standalone: true,
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+        DatePipe,
+        TranslateModule,
+    ],
 })
 export class InvoicesComponent implements OnInit {
   columns: string[] = ['number', 'customer', 'service', 'created', 'action'];

@@ -8,11 +8,31 @@ import { Offer } from '../models/offer.model';
 import { Customer } from '../models/customer.model';
 import { PdfService } from '../services/pdf.service';
 import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 
 @Component({
-  selector: 'app-offers',
-  templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.scss'],
+    selector: 'app-offers',
+    templateUrl: './offers.component.html',
+    styleUrls: ['./offers.component.scss'],
+    standalone: true,
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+        DatePipe,
+        TranslateModule,
+    ],
 })
 export class OffersComponent implements OnInit {
   columns: string[] = ['number', 'customer', 'service', 'created', 'action'];

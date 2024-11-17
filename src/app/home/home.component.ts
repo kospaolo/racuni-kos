@@ -4,11 +4,15 @@ import { Service } from '../models/service.model';
 import { Customer } from '../models/customer.model';
 import { Offer } from '../models/offer.model';
 import { Invoice } from '../models/invoice.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [NgFor, NgIf, DatePipe, TranslateModule]
 })
 export class HomeComponent implements OnInit {
   services: Service[] = [];

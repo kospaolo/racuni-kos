@@ -5,11 +5,16 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrl: './customers.component.scss'
+    selector: 'app-customers',
+    templateUrl: './customers.component.html',
+    styleUrl: './customers.component.scss',
+    standalone: true,
+    imports: [MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatPaginator, TranslateModule]
 })
 export class CustomersComponent {
   columns: string[] = ['firstname', 'lastname', 'email', 'mobilephone', 'address', 'city', 'zip', 'action'];
