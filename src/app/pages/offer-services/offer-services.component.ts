@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AddServiceComponent } from './add-service/add-service/add-service.component';
+import { AddServiceComponent } from './add-service/add-service.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../services/api.service';
-import { Service } from '../models/service.model';
-import { EditServiceComponent } from './edit-service/add-service/edit-service.component';
+import { ApiService } from '../../services/api.service';
+import { Service } from '../../models/service.model';
+import { EditServiceComponent } from './edit-service/edit-service.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CurrencyPipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';

@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-add-invoice',
-    templateUrl: './add-invoice.component.html',
-    styleUrls: ['./add-invoice.component.scss'],
+    selector: 'app-add-offer',
+    templateUrl: './add-offer.component.html',
+    styleUrls: ['./add-offer.component.scss'],
     standalone: true,
     imports: [FormsModule, NgFor, NgIf, TranslateModule]
 })
-export class AddInvoiceComponent implements OnInit {
+export class AddOfferComponent implements OnInit {
   selectedCustomerId: string = '';
   selectedServiceIds: { [key: string]: boolean } = {};
   serviceQuantities: { [key: string]: number } = {};
@@ -54,9 +54,9 @@ export class AddInvoiceComponent implements OnInit {
     );
   }
 
-  createInvoice(): void {
+  createOffer(): void {
     const selectedCustomer = this.customers.find(customer => customer.id === this.selectedCustomerId);
-    
+
     if (!selectedCustomer) {
       this.toastr.error('Please select a valid customer');
       return;
@@ -69,21 +69,21 @@ export class AddInvoiceComponent implements OnInit {
         quantity: this.serviceQuantities[id] || 1
       }));
 
-    const newInvoice = {
+    const newOffer = {
       customerId: selectedCustomer.id,
       services: selectedServicesWithQuantities,
       created: new Date(),
       number: this.number
     };
 
-    this.apiService.addInvoice(newInvoice).subscribe(
-      invoice => {
-        this.toastr.success('Invoice created!');
+    this.apiService.addOffer(newOffer).subscribe(
+      offer => {
+        this.toastr.success('Offer created!');
         this.activeModal.close('added');
       },
       error => {
-        this.toastr.error('Error creating invoice');
-        console.error('Error creating invoice:', error);
+        this.toastr.error('Error creating offer');
+        console.error('Error creating offer:', error);
       }
     );
   }

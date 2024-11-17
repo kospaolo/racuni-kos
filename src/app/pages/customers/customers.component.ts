@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Customer } from '../models/customer.model';
+import { Customer } from '../../models/customer.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
-import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import {AddCustomerComponent} from "./add-customer/add-customer.component";
 
 @Component({
     selector: 'app-customers',

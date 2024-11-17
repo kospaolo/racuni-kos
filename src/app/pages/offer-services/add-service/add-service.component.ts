@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-add-service',
+    selector: 'app-edit-service',
     templateUrl: './add-service.component.html',
     styleUrl: './add-service.component.scss',
     standalone: true,

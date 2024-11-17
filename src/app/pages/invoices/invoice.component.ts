@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { AddInvoiceComponent } from './add-invoice/add-invoice.component';
-import { Service } from '../models/service.model';
-import { Offer } from '../models/offer.model';
-import { Customer } from '../models/customer.model';
-import { PdfService } from '../services/pdf.service';
+import { Service } from '../../models/service.model';
+import { Offer } from '../../models/offer.model';
+import { Customer } from '../../models/customer.model';
+import { PdfService } from '../../services/pdf.service';
 import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
