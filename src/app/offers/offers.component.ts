@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
@@ -35,17 +35,17 @@ import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, Ma
     ],
 })
 export class OffersComponent implements OnInit {
-  columns: string[] = ['number', 'customer', 'service', 'created', 'action'];
-  services: Service[] = [];
-  offers: Offer[] = [];
-  customers: Customer[] = [];
+  #modalService: NgbModal = inject(NgbModal);
+  #toast: ToastrService   = inject(ToastrService);
+  #apiService: ApiService = inject(ApiService);
+  #pdfService: PdfService = inject(PdfService);
+  #destroyRef: DestroyRef = inject(DestroyRef);
 
-  constructor(
-    private modalService: NgbModal,
-    private toastr: ToastrService,
-    private apiService: ApiService,
-    private pdfService: PdfService
-  ) {}
+  services: WritableSignal<Service[]>   = signal<Service[]>([]);
+  offers: WritableSignal<Offer[]>       = signal<Offer[]>([]);
+  customers: WritableSignal<Customer[]> = signal<Customer[]>([]);
+
+  columns: string[] = ['number', 'customer', 'service', 'created', 'action'];
 
   ngOnInit() {
     this.fetchOffers();
@@ -54,40 +54,52 @@ export class OffersComponent implements OnInit {
   }
 
   fetchServices() {
-    this.apiService.fetchServices().subscribe(
-      (services) => {
-        this.services = services;
+    const subscription = this.#apiService.fetchServices().subscribe({
+      next: (response) => {
+        this.services.set(response);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching data', error);
       }
-    );
+    });
+
+    this.#destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
   }
 
   fetchOffers() {
-    this.apiService.fetchOffers().subscribe(
-      (offers) => {
-        this.offers = offers;
+    const subscription = this.#apiService.fetchOffers().subscribe({
+      next: (response) => {
+        this.offers.set(response);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching offers', error);
       }
-    );
+    });
+
+    this.#destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
   }
 
   fetchCustomers() {
-    this.apiService.fetchCustomers().subscribe(
-      (customers) => {
-        this.customers = customers;
+    const subscription = this.#apiService.fetchCustomers().subscribe({
+      next: (response) => {
+        this.customers.set(response);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching customers', error);
       }
-    );
+    });
+
+    this.#destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
   }
 
   getCustomerName(customerId: any): string {
-    const customer = this.customers.find((c) => c.id === customerId);
+    const customer = this.customers().find((c) => c.id === customerId);
     return customer ? `${customer.firstname} ${customer.lastname}` : 'Unknown';
   }
 
@@ -97,19 +109,19 @@ export class OffersComponent implements OnInit {
     }
     return serv
       .map((s) => {
-        const service = this.services.find((service) => service.id === s.serviceId);
+        const service = this.services().find((service) => service.id === s.serviceId);
         return service ? service.name : '';
       })
       .filter((name) => name)
       .join(', ');
-  }  
+  }
 
   addOffer() {
-    const modalRef = this.modalService.open(AddOfferComponent);
+    const modalRef = this.#modalService.open(AddOfferComponent);
     modalRef.result.then(
       (result) => {
         if (result === 'added') {
-          this.toastr.success('Offer added!');
+          this.#toast.success('Offer added!');
           this.fetchOffers();
         }
       },
@@ -118,12 +130,12 @@ export class OffersComponent implements OnInit {
   }
 
   editOffer(offer_id: string) {
-    const modalRef = this.modalService.open(EditOfferComponent);
+    const modalRef = this.#modalService.open(EditOfferComponent);
     modalRef.componentInstance.offer_id = offer_id;
     modalRef.result.then(
       (result) => {
         if (result === 'added') {
-          this.toastr.success('Offer added!');
+          this.#toast.success('Offer added!');
           this.fetchOffers();
         }
       },
@@ -132,33 +144,33 @@ export class OffersComponent implements OnInit {
   }
 
   deleteOffer(offerId: string) {
-    this.apiService.deleteOffer(offerId).subscribe(
+    this.#apiService.deleteOffer(offerId).subscribe(
       () => {
-        this.toastr.success('Offer deleted!');
+        this.#toast.success('Offer deleted!');
         this.fetchOffers();
       },
       (error) => {
         console.error('Error deleting offer', error);
-        this.toastr.error('Failed to delete offer');
+        this.#toast.error('Failed to delete offer');
       }
     );
   }
 
   downloadOfferPdf(offerId: string) {
-    const offer = this.offers.find((o) => o.id === offerId);
+    const offer = this.offers().find((o) => o.id === offerId);
 
     if (!offer) {
-      this.toastr.error('Offer not found');
+      this.#toast.error('Offer not found');
       return;
     }
 
-    const customer = this.customers.find((c) => c.id === offer.customerId);
+    const customer = this.customers().find((c) => c.id === offer.customerId);
     if (!customer) {
-      this.toastr.error('Customer not found');
+      this.#toast.error('Customer not found');
       return;
     }
 
-    this.pdfService.generatePdf(customer, this.services, offer, undefined);
-    this.toastr.success('Offer downloaded!');
+    this.#pdfService.generatePdf(customer, this.services(), offer, undefined);
+    this.#toast.success('Offer downloaded!');
   }
 }

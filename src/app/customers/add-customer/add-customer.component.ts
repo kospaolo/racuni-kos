@@ -28,10 +28,13 @@ export class AddCustomerComponent {
   ) {}
 
   addCustomer() {
-    this.apiService.addCustomer(this.newCustomer).subscribe(res => {
-      this.modal.close('added');
-    }, error => {
-      console.error('Error adding customer', error);
+    this.apiService.addCustomer(this.newCustomer).subscribe({
+      next: () => {
+        this.modal.close('added');
+      },
+      error: (error) => {
+        console.error('Error adding customer', error);
+      }
     });
   }
 }

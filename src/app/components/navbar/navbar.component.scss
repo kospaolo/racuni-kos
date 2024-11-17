@@ -9,11 +9,6 @@
   transition: text-decoration 0.3s;
 }
 
-.nav-link.active {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-
 .navbar-nav .nav-link:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
